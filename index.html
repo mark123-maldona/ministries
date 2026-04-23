@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arise Media — Sermons & Worship</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ==============================
+       SIDEBAR
+  ============================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">✦</div>
+      <span class="logo-name">Arise<em>Media</em></span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-section="home">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Home</span>
+      </a>
+      <a href="#" class="nav-item" data-section="sermons">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        <span>Sermons</span>
+      </a>
+      <a href="#" class="nav-item" data-section="music">
+        <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <span>Worship Music</span>
+      </a>
+      <a href="#" class="nav-item" data-section="albums">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Albums</span>
+      </a>
+      <a href="#" class="nav-item" data-section="downloads">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Downloads</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section-label">Library</div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <span>Saved</span>
+      </a>
+      <a href="#" class="nav-item">
+        <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        <span>Queue</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-divider"></div>
+
+    <!-- Sidebar mini now-playing -->
+    <div class="sidebar-now-playing" id="sidebarNP">
+      <div class="snp-art">
+        <img src="images/IMG-20260405-WA0024.jpg" alt="" id="snpArt" />
+        <div class="snp-fallback" id="snpFallback">♪</div>
+      </div>
+      <div class="snp-meta">
+        <div class="snp-title" id="snpTitle">Nothing playing</div>
+        <div class="snp-sub" id="snpSub">Select a track</div>
+      </div>
+      <button class="snp-btn" onclick="togglePlay()">▶</button>
+    </div>
+  </aside>
+
+  <!-- ==============================
+       MAIN WRAPPER
+  ============================== -->
+  <div class="main-wrapper">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="search-input" placeholder="Search sermons, songs, speakers…" id="searchInput" oninput="handleSearch(this.value)" />
+        <button class="search-clear" id="searchClear" onclick="clearSearch()" style="display:none">✕</button>
+      </div>
+
+      <div class="topbar-pills">
+        <button class="pill active" onclick="filterContent(this,'all')">All</button>
+        <button class="pill" onclick="filterContent(this,'sermon')">Sermons</button>
+        <button class="pill" onclick="filterContent(this,'music')">Music</button>
+      </div>
+    </header>
+
+    <!-- SCROLLABLE CONTENT -->
+    <main class="content" id="mainContent">
+
+      <!-- ─── HERO FEATURED ─── -->
+      <section class="hero-featured">
+        <div class="hero-bg">
+          <!-- HERO BACKGROUND IMAGE -->
+          <img src="images/me.jpg" alt="" class="hero-bg-img" id="heroBgImg" />
+          <div class="hero-bg-overlay"></div>
+        </div>
+        <div class="hero-body">
+          <div class="hero-left">
+            <span class="hero-badge">Featured Sermon</span>
+            <h1 class="hero-title">Walking in the Fullness of Divine Purpose</h1>
+            <p class="hero-meta">Kifunye Mark &nbsp;·&nbsp; Kingdom Mandate &nbsp;·&nbsp; 52 min</p>
+            <p class="hero-desc">Discover how God's purpose is not a destination but a continuous journey of encounter, obedience, and transformation.</p>
+            <div class="hero-btns">
+              <button class="btn-play-hero" onclick="playFeatured()">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Play Now
+              </button>
+              <button class="btn-dl-hero" onclick="toast('Downloading featured sermon…')">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download
+              </button>
+            </div>
+          </div>
+          <div class="hero-right">
+            <!-- FEATURED SERMON THUMBNAIL  -->
+            <img src="images/IMG-20260405-WA0024.jpg" alt="Featured Sermon" class="hero-thumb" id="heroThumb" />
+            <div class="hero-thumb-fallback">
+              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── RECENTLY ADDED ─── -->
+      <section class="shelf" id="shelfRecent">
+        <div class="shelf-head">
+          <h2 class="shelf-title">Recently Added</h2>
+          <a href="#" class="see-all">See all</a>
+        </div>
+        <div class="cards-scroll">
+
+          <div class="mcard" data-type="sermon"
+               data-title="ALone with the Almighty"
+               data-speaker="Apostle Grace Lubega"
+               data-duration="48:12"
+               data-sub="Kingdom Mandate"
+               data-src="audio/sermons/Alone With The Almighty.mp3"
+               data-download="audio/sermons/Alone With The Almighty.mp3">
+               <!-- data-video="videos/sermon-resurrection.mp4" -->
+            <div class="mcard-art">
+              <!-- THUMBNAIL —  -->
+              <img src="images/lock.jpg" alt="Alone with the Almighty" class="mcard-img" />
+              <div class="mcard-fallback sermon-fallback">✝</div>
+              <div class="mcard-hover">
+                <button class="mcard-play" onclick="playCard(this.closest('.mcard'))">
+                  <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </button>
+              </div>
+              <span class="mcard-type-badge">Sermon</span>
+              <span class="mcard-dur">1:50</span>
+            </div>
+            <div class="mcard-body">
+              <div class="mcard-title">Alone With the Almighty</div>
+              <div class="mcard-sub">Apostle Grace Lubega</div>
+              <div class="mcard-actions">
+                <button class="mca" title="Download" onclick="downloadCard(this.closest('.mcard'))">
+                  <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+                <button class="mca save-toggle" title="Save" onclick="toggleSave(this)">
+                  <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mcard" data-type="music"
+               data-title="Adonai Phaneroo Choir"
+               data-speaker="Phaneroo Choir"
+               data-duration="4:32"
+               data-sub="As It Is In Heaven"
+               data-src="audio/worship/Adonai Phaneroo Choir.mp3"
+               data-download="audio/worship/Adonai Phaneroo Choir.mp3">
+            <div class="mcard-art">
+              <!-- THUMBNAIL -->
+              <img src="images/IMG-20260326-WA0044.jpg" alt="Open the Gates" class="mcard-img" />
+              <div class="mcard-fallback music-fallback">♪</div>
+              <div class="mcard-hover">
+                <button class="mcard-play" onclick="playCard(this.closest('.mcard'))">
+                  <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </button>
+              </div>
+              <span class="mcard-type-badge music-type">Worship</span>
+              <span class="mcard-dur">4:32</span>
+            </div>
+            <div class="mcard-body">
+              <div class="mcard-title">Adonai Phaneroo Choir</div>
+              <div class="mcard-sub">Phaneroo Choir</div>
+              <div class="mcard-actions">
+                <button class="mca" title="Download" onclick="downloadCard(this.closest('.mcard'))">
+                  <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+                <button class="mca save-toggle" title="Save" onclick="toggleSave(this)">
+                  <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mcard" data-type="sermon"
+               data-title="A Word Within"
+               data-speaker="Apostle Grace Lubega"
+               data-duration="1:40"
+               data-sub="Foundations of Faith"
+               data-src="audio/sermons/A Word Within.mp3"
+               data-download="audio/sermons/A Word Within.mp3">
+            <div class="mcard-art">
+              <!-- THUMBNAIL — replace src e.g. src="images/thumb-grace.jpg" -->
+              <img src="images/IMG-20260409-WA0091.jpg" alt="A Word Within" class="mcard-img" />
+              <div class="mcard-fallback sermon-fallback">✝</div>
+              <div class="mcard-hover">
+                <button class="mcard-play" onclick="playCard(this.closest('.mcard'))">
+                  <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </button>
+              </div>
+              <span class="mcard-type-badge">Sermon</span>
+              <span class="mcard-dur">1:40</span>
+            </div>
+            <div class="mcard-body">
+              <div class="mcard-title">A Word within</div>
+              <div class="mcard-sub">Apostle Grace lubega</div>
+              <div class="mcard-actions">
+                <button class="mca" title="Download" onclick="downloadCard(this.closest('.mcard'))">
+                  <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+                <button class="mca save-toggle" title="Save" onclick="toggleSave(this)">
+                  <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mcard" data-type="music"
+               data-title="Phaneroo Worship Session 425"
+               data-speaker="Phaneroo Choir | Min Raymond"
+               data-duration="12:23"
+               data-sub="As It Is In Heaven"
+               data-src="audio/worship/Worship_Phan 475 .mp3"
+               data-download="audio/worship/Worship_Phan 475 .mp3">
+            <div class="mcard-art">
+              <!-- THUMBNAIL — replace src e.g. src="images/album-heaven.jpg" -->
+              <img src="images/IMG-20260326-WA0044.jpg" alt="Holy Ground" class="mcard-img" />
+              <div class="mcard-fallback music-fallback">♪</div>
+              <div class="mcard-hover">
+                <button class="mcard-play" onclick="playCard(this.closest('.mcard'))">
+                  <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </button>
+              </div>
+              <span class="mcard-type-badge music-type">Worship</span>
+              <span class="mcard-dur">23:18</span>
+            </div>
+            <div class="mcard-body">
+              <div class="mcard-title">Phaneroo Worship Session 425</div>
+              <div class="mcard-sub">Phaneroo Choir | Min Raymond</div>
+              <div class="mcard-actions">
+                <button class="mca" title="Download" onclick="downloadCard(this.closest('.mcard'))">
+                  <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+                <button class="mca save-toggle" title="Save" onclick="toggleSave(this)">
+                  <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mcard" data-type="sermon"
+               data-title="How to empower the Spirit Man"
+               data-speaker="Apostle Grace Lubega"
+               data-duration="55:08"
+               data-sub="Foundations of Faith"
+               data-src="audio/sermons/How To Empower The Spirit Man.mp3"
+               data-download="audio/sermons/How To Empower The Spirit Man.mp3">
+            <div class="mcard-art">
+              <!-- THUMBNAIL — -->
+              <img src="images/IMG-20260409-WA0090.jpg" alt="Positioned for the Supernatural" class="mcard-img" />
+              <div class="mcard-fallback sermon-fallback">✝</div>
+              <div class="mcard-hover">
+                <button class="mcard-play" onclick="playCard(this.closest('.mcard'))">
+                  <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </button>
+              </div>
+              <span class="mcard-type-badge">Sermon</span>
+              <span class="mcard-dur">55:08</span>
+            </div>
+            <div class="mcard-body">
+              <div class="mcard-title">How to empower the Spirit Man</div>
+              <div class="mcard-sub">Apostle Grace Lubega</div>
+              <div class="mcard-actions">
+                <button class="mca" title="Download" onclick="downloadCard(this.closest('.mcard'))">
+                  <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+                <button class="mca save-toggle" title="Save" onclick="toggleSave(this)">
+                  <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ─── ALBUMS ─── -->
+      <section class="shelf" id="shelfAlbums">
+        <div class="shelf-head">
+          <h2 class="shelf-title">Worship Albums</h2>
+          <a href="#" class="see-all">See all</a>
+        </div>
+        <div class="cards-scroll albums-scroll">
+
+          <div class="album-card">
+            <div class="album-art-wrap">
+              <!-- ALBUM COVER — -->
+              <img src="images/IMG-20260409-WA0090.jpg" alt="As It Is In Heaven" class="album-img" />
+              <div class="album-fallback">♪</div>
+              <div class="album-overlay">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+            <div class="album-name">As It Is In Heaven</div>
+            <div class="album-meta">Arise Worship · 2025 · 12 tracks</div>
+          </div>
+
+          <div class="album-card">
+            <div class="album-art-wrap">
+              <!-- ALBUM COVER  -->
+              <img src="images/IMG-20260405-WA0027.jpg" alt="Flames of Glory" class="album-img" />
+              <div class="album-fallback">♪</div>
+              <div class="album-overlay">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+            <div class="album-name">Flames of Glory</div>
+            <div class="album-meta">Arise Worship · 2023 · 10 tracks</div>
+          </div>
+
+          <div class="album-card">
+            <div class="album-art-wrap">
+              <!-- ALBUM COVER —  -->
+              <img src="images/IMG-20260405-WA0028.jpg" alt="Ancient Gates" class="album-img" />
+              <div class="album-fallback">♪</div>
+              <div class="album-overlay">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+            <div class="album-name">Ancient Gates</div>
+            <div class="album-meta">Arise Worship · 2022 · 8 tracks</div>
+          </div>
+
+          <div class="album-card">
+            <div class="album-art-wrap">
+              <!-- ALBUM COVER — -->
+              <img src="images/IMG-20260405-WA0024.jpg" alt="The Blood Speaks" class="album-img" />
+              <div class="album-fallback">♪</div>
+              <div class="album-overlay">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+            <div class="album-name">The Blood Speaks</div>
+            <div class="album-meta">Arise Worship · 2021 · 11 tracks</div>
+          </div>
+
+          <div class="album-card">
+            <div class="album-art-wrap">
+              <!-- ALBUM COVER —  -->
+              <img src="images/IMG-20260405-WA0028.jpg" alt="Glorious" class="album-img" />
+              <div class="album-fallback">♪</div>
+              <div class="album-overlay">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+            <div class="album-name">Glorious</div>
+            <div class="album-meta">Arise Worship · 2020 · 9 tracks</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ─── ALL SERMONS LIST ─── -->
+      <section class="shelf" id="shelfSermons">
+        <div class="shelf-head">
+          <h2 class="shelf-title">All Sermons</h2>
+          <a href="#" class="see-all">See all</a>
+        </div>
+        <div class="list-view" id="sermonList">
+
+          <div class="list-item" data-type="sermon"
+               data-title="Beyond convinience"
+               data-speaker="Apostle Grace Lubega"
+               data-duration="2:30"
+               data-sub="Kingdom Mandate"
+               data-src="audio/sermons/Beyond Convinience.mp3"
+               data-download="audio/sermons/Beyond Convinience.mp3">
+            <div class="li-num">1</div>
+            <div class="li-art">
+              <!-- SERMON THUMBNAIL" -->
+              <img src="images/IMG-20260405-WA0024.jpg" alt="" class="li-img" />
+              <div class="li-fallback">✝</div>
+              <button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+            </div>
+            <div class="li-info">
+              <div class="li-title">Beyond convinience</div>
+              <div class="li-sub">Kingdom Mandate Series</div>
+            </div>
+            <div class="li-date">Apr 13, 2025</div>
+            <div class="li-dur">52:30</div>
+            <div class="li-acts">
+              <button class="li-btn" title="Download" onclick="downloadListItem(this.closest('.list-item'))">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </button>
+              <button class="li-btn save-toggle" title="Save" onclick="toggleSave(this)">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="list-item" data-type="sermon"
+               data-title="Finding Purpose in Solitude"
+               data-speaker="Apostle Grace Lubega"
+               data-duration="8:12"
+               data-sub="Kingdom Mandate"
+               data-src="audio/sermons/Finding Purpose In Solitude.mp3"
+               data-download="audio/sermons/Finding Purpose In Solitude.mp3">
+            <div class="li-num">2</div>
+            <div class="li-art">
+              <!-- SERMON THUMBNAIL  -->
+              <img src="images/IMG-20260409-WA0090.jpg" alt="" class="li-img" />
+              <div class="li-fallback">✝</div>
+              <button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+            </div>
+            <div class="li-info">
+              <div class="li-title">Finding Purpose in Solitude</div>
+              <div class="li-sub">Kingdom Mandate Series</div>
+            </div>
+            <div class="li-date">Apr 6, 2025</div>
+            <div class="li-dur">48:12</div>
+            <div class="li-acts">
+              <button class="li-btn" title="Download" onclick="downloadListItem(this.closest('.list-item'))">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </button>
+              <button class="li-btn save-toggle" title="Save" onclick="toggleSave(this)">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="list-item" data-type="sermon"
+               data-title="Knowing Him"
+               data-speaker="Apostle Grace Lubega"
+               data-duration="02:45"
+               data-sub="Foundations of Faith"
+               data-src="audio/sermons/Knowing Him.mp3"
+               data-download="audio/sermons/Knowing Him.mp3">
+            <div class="li-num">3</div>
+            <div class="li-art">
+              <!-- SERMON THUMBNAIL  -->
+              <img src="images/IMG-20260326-WA0048.jpg" alt="" class="li-img" />
+              <div class="li-fallback">✝</div>
+              <button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+            </div>
+            <div class="li-info">
+              <div class="li-title">Knowing Him</div>
+              <div class="li-sub">Foundations of Faith Series</div>
+            </div>
+            <div class="li-date">Mar 30, 2025</div>
+            <div class="li-dur">02:45</div>
+            <div class="li-acts">
+              <button class="li-btn" title="Download" onclick="downloadListItem(this.closest('.list-item'))">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </button>
+              <button class="li-btn save-toggle" title="Save" onclick="toggleSave(this)">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="list-item" data-type="sermon"
+               data-title="The Scared altar"
+               data-speaker="Apostle Grace Lubega"
+               data-duration="1:30"
+               data-sub="Prayer & Fire"
+               data-src="audio/sermons/The Sacred Altar.mp3"
+               data-download="audio/sermons/The Sacred Altar.mp3">
+            <div class="li-num">4</div>
+            <div class="li-art">
+              <!-- SERMON THUMBNAIL —-->
+              <img src="images/IMG-20260326-WA0048.jpg" alt="" class="li-img" />
+              <div class="li-fallback">✝</div>
+              <button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+            </div>
+            <div class="li-info">
+              <div class="li-title">The Scared altar</div>
+              <div class="li-sub">Prayer &amp; Fire Series</div>
+            </div>
+            <div class="li-date">Mar 16, 2025</div>
+            <div class="li-dur">1:30</div>
+            <div class="li-acts">
+              <button class="li-btn" title="Download" onclick="downloadListItem(this.closest('.list-item'))">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </button>
+              <button class="li-btn save-toggle" title="Save" onclick="toggleSave(this)">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="list-item" data-type="sermon"
+               data-title="The In Christ Truths"
+               data-speaker="APostle Grace Lubega"
+               data-duration="1:55"
+               data-sub="Prayer & Fire"
+               data-src="audio/sermons/The In Christ Truths.mp3"
+               data-download="audio/sermons/The In Christ Truths.mp3">
+            <div class="li-num">5</div>
+            <div class="li-art">
+              <!-- SERMON THUMBNAIL — replace src e.g. src="images/thumb-authority.jpg" -->
+              <img src="images/IMG-20260409-WA0090.jpg" alt="" class="li-img" />
+              <div class="li-fallback">✝</div>
+              <button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+            </div>
+            <div class="li-info">
+              <div class="li-title">The In Christ Truths</div>
+              <div class="li-sub">Prayer &amp; Fire Series</div>
+            </div>
+            <div class="li-date">Mar 9, 2025</div>
+            <div class="li-dur">1:55</div>
+            <div class="li-acts">
+              <button class="li-btn" title="Download" onclick="downloadListItem(this.closest('.list-item'))">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </button>
+              <button class="li-btn save-toggle" title="Save" onclick="toggleSave(this)">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              </button>
+            </div>
+          </div>
+
+ 
+
+        </div>
+      </section>
+
+    <!-- ══════════════════════════════
+         PAGE: SERMONS 
+    ══════════════════════════════ -->
+    <div class="page" id="page-sermons" style="display:none">
+      <div class="page-header">
+        <h1 class="page-title">Sermons</h1>
+        <p class="page-desc">All messages from Arise Ministries — sorted by latest.</p>
+      </div>
+
+      <!-- Series filter -->
+      <div class="filter-row">
+        <button class="filter-chip active" onclick="filterSeries(this,'all')">All Series</button>
+        <button class="filter-chip" onclick="filterSeries(this,'Kingdom Mandate')">Kingdom Mandate</button>
+        <button class="filter-chip" onclick="filterSeries(this,'Foundations of Faith')">Foundations of Faith</button>
+        <button class="filter-chip" onclick="filterSeries(this,'Prayer &amp; Fire')">Prayer &amp; Fire</button>
+        <button class="filter-chip" onclick="filterSeries(this,'Covenant')">Covenant</button>
+      </div>
+
+      <div class="list-view page-list" id="sermonsPageList">
+
+        <div class="list-item" data-type="sermon"
+               data-title="The In Christ Truths"
+               data-speaker="APostle Grace Lubega"
+               data-duration="1:55"
+               data-sub="Kingdom Mandate"
+               data-src="audio/sermons/The In Christ Truths.mp3"
+               data-download="audio/sermons/The In Christ Truths.mp3">
+          <div class="li-num">1</div>
+          <div class="li-art"><img src="images/IMG-20260405-WA0028.jpg" alt="" class="li-img"/><div class="li-fallback">✝</div>
+            <button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+          <div class="li-info"><div class="li-title">The In Christ Truths</div><div class="li-sub">Kingdom Mandate · Apr 13, 2025</div></div>
+          <div class="li-date">52:30</div><div class="li-dur">Apr 13</div>
+          <div class="li-acts">
+            <button class="li-btn" onclick="downloadListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+            <button class="li-btn save-toggle" onclick="toggleSave(this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          </div>
+        </div>
+
+        <div class="list-item" data-type="sermon" data-series="Kingdom Mandate"
+             data-title="The Learned Spirit" data-speaker="APostle Grace Lubega"
+             data-duration="48:12" data-sub="Kingdom Mandate" data-src="audio/sermons/The learned Spirit.mp3" data-download="audio/sermon-resurrection.mp3">
+          <div class="li-num">2</div>
+          <div class="li-art"><img src="images/IMG-20260326-WA0048.jpg" alt="" class="li-img"/><div class="li-fallback">✝</div>
+            <button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+          <div class="li-info"><div class="li-title">The learned spirit</div><div class="li-sub">Kingdom Mandate · Apr 6, 2025</div></div>
+          <div class="li-date">48:12</div><div class="li-dur">Apr 6</div>
+          <div class="li-acts">
+            <button class="li-btn" onclick="downloadListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+            <button class="li-btn save-toggle" onclick="toggleSave(this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          </div>
+        </div>
+
+        <div class="list-item" data-type="sermon" data-series="Foundations of Faith"
+             data-title="Grace: The Empowerment of God" data-speaker="Pastor John Arise"
+             data-duration="1:02:45" data-sub="Foundations of Faith" data-src="audio/sermon-grace.mp3" data-download="audio/sermon-grace.mp3">
+          <div class="li-num">3</div>
+          <div class="li-art"><img src="images/IMG-20260409-WA0091.jpg" alt="" class="li-img"/><div class="li-fallback">✝</div>
+            <button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+          <div class="li-info"><div class="li-title">Grace: The Empowerment of God</div><div class="li-sub">Foundations of Faith · Mar 30, 2025</div></div>
+          <div class="li-date">1:02:45</div><div class="li-dur">Mar 30</div>
+          <div class="li-acts">
+            <button class="li-btn" onclick="downloadListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+            <button class="li-btn save-toggle" onclick="toggleSave(this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          </div>
+        </div>
+
+        <div class="list-item" data-type="sermon" data-series="Foundations of Faith"
+             data-title="Positioned for the Supernatural" data-speaker="Pastor John Arise"
+             data-duration="55:08" data-sub="Foundations of Faith" data-src="audio/sermon-supernatural.mp3" data-download="audio/sermon-supernatural.mp3">
+          <div class="li-num">4</div>
+          <div class="li-art"><img src="images/IMG-20260326-WA0044.jpg" alt="" class="li-img"/><div class="li-fallback">✝</div>
+            <button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+          <div class="li-info"><div class="li-title">Positioned for the Supernatural</div><div class="li-sub">Foundations of Faith · Mar 23, 2025</div></div>
+          <div class="li-date">55:08</div><div class="li-dur">Mar 23</div>
+          <div class="li-acts">
+            <button class="li-btn" onclick="downloadListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+            <button class="li-btn save-toggle" onclick="toggleSave(this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          </div>
+        </div>
+
+        <div class="list-item" data-type="sermon" data-series="Prayer & Fire"
+             data-title="The Secret Place of the Most High" data-speaker="Pastor John Arise"
+             data-duration="41:30" data-sub="Prayer & Fire" data-src="audio/sermon-secret-place.mp3" data-download="audio/sermon-secret-place.mp3">
+          <div class="li-num">5</div>
+          <div class="li-art"><img src="images/IMG-20260326-WA0044.jpg" alt="" class="li-img"/><div class="li-fallback">✝</div>
+            <button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+          <div class="li-info"><div class="li-title">The Secret Place of the Most High</div><div class="li-sub">Prayer &amp; Fire · Mar 16, 2025</div></div>
+          <div class="li-date">41:30</div><div class="li-dur">Mar 16</div>
+          <div class="li-acts">
+            <button class="li-btn" onclick="downloadListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+            <button class="li-btn save-toggle" onclick="toggleSave(this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          </div>
+        </div>
+
+        <div class="list-item" data-type="sermon" data-series="Prayer & Fire"
+             data-title="Understanding Spiritual Authority" data-speaker="Pastor John Arise"
+             data-duration="59:55" data-sub="Prayer & Fire" data-src="audio/sermon-authority.mp3" data-download="audio/sermon-authority.mp3">
+          <div class="li-num">6</div>
+          <div class="li-art"><img src="images/IMG-20260326-WA0044.jpg" alt="" class="li-img"/><div class="li-fallback">✝</div>
+            <button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+          <div class="li-info"><div class="li-title">Understanding Spiritual Authority</div><div class="li-sub">Prayer &amp; Fire · Mar 9, 2025</div></div>
+          <div class="li-date">59:55</div><div class="li-dur">Mar 9</div>
+          <div class="li-acts">
+            <button class="li-btn" onclick="downloadListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+            <button class="li-btn save-toggle" onclick="toggleSave(this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          </div>
+        </div>
+
+        <div class="list-item" data-type="sermon" data-series="Covenant"
+             data-title="Heirs of the Promise" data-speaker="Pastor John Arise"
+             data-duration="44:20" data-sub="Covenant" data-src="audio/sermon-heirs.mp3" data-download="audio/sermon-heirs.mp3">
+          <div class="li-num">7</div>
+          <div class="li-art"><img src="images/IMG-20260405-WA0024.jpg" alt="" class="li-img"/><div class="li-fallback">✝</div>
+            <button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+          <div class="li-info"><div class="li-title">Heirs of the Promise</div><div class="li-sub">Covenant · Mar 2, 2025</div></div>
+          <div class="li-date">44:20</div><div class="li-dur">Mar 2</div>
+          <div class="li-acts">
+            <button class="li-btn" onclick="downloadListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+            <button class="li-btn save-toggle" onclick="toggleSave(this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════
+         PAGE: WORSHIP MUSIC
+    ══════════════════════════════ -->
+    <div class="page" id="page-music" style="display:none">
+      <div class="page-header">
+        <h1 class="page-title">Worship Music</h1>
+        <p class="page-desc">Songs birthed in encounter — worship that carries you into the presence of God.</p>
+      </div>
+
+      <!-- Now playing album hero -->
+      <div class="music-hero">
+        <div class="music-hero-art">
+          <!-- ALBUM COVER — replace src e.g. src="images/album-as-it-is-in-heaven.jpg" -->
+          <img src="images/IMG-20260326-WA0048.jpg" alt="As It Is In Heaven" class="music-hero-img" />
+          <div class="music-hero-fallback">♪</div>
+        </div>
+        <div class="music-hero-info">
+          <span class="hero-badge">Latest Album</span>
+          <h2 class="music-album-title">As It Is In Heaven</h2>
+          <p class="music-album-meta">Arise Worship &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; 12 tracks</p>
+          <div class="hero-btns" style="margin-top:1.2rem">
+            <button class="btn-play-hero" onclick="playMusicPage()">
+              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>Play All
+            </button>
+            <button class="btn-dl-hero" onclick="toast('Downloading album…')">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download All
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tracklist -->
+      <div class="shelf" style="padding-top:1.5rem">
+        <div class="shelf-head"><h2 class="shelf-title">Tracklist</h2></div>
+        <div class="list-view">
+
+          <div class="list-item" data-type="music" data-title="Worship-ISCR 2024" data-speaker="Apostle Grace Lubega" data-duration="4:32" data-sub="As It Is In Heaven" data-src="audio/worship/Worship-ISCR 2024.mp3" data-download="audio/worship/Worship-ISCR 2024.mp3">
+            <div class="li-num">1</div>
+            <div class="li-art"><img src="images/IMG-20260409-WA0090.jpg" alt="" class="li-img"/><div class="li-fallback">♪</div><button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+            <div class="li-info"><div class="li-title">Worship-ISCR 2024</div><div class="li-sub">As It Is In Heaven</div></div>
+            <div class="li-date">12:32</div><div class="li-dur"></div>
+            <div class="li-acts">
+              <button class="li-btn" onclick="downloadListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+              <button class="li-btn save-toggle" onclick="toggleSave(this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+            </div>
+          </div>
+
+          <div class="list-item" data-type="music" data-title="Worship-'CTF 2024-Muk' " data-speaker="Apostle Grace Lubega" data-duration="5:18" data-sub="As It Is In Heaven" data-src="audio/worship/Worship-'CTF 2024-Muk' .mp3" data-download="audio/worship/Worship-'CTF 2024-Muk' .mp3">
+            <div class="li-num">2</div>
+            <div class="li-art"><img src="images/IMG-20260405-WA0027.jpg" alt="" class="li-img"/><div class="li-fallback">♪</div><button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+            <div class="li-info"><div class="li-title">Worship-'CTF 2024-Muk</div><div class="li-sub">As It Is In Heaven</div></div>
+            <div class="li-date">5:18</div><div class="li-dur"></div>
+            <div class="li-acts">
+              <button class="li-btn" onclick="downloadListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+              <button class="li-btn save-toggle" onclick="toggleSave(this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+            </div>
+          </div>
+
+          <div class="list-item" data-type="music" data-title="As It Is In Heaven" data-speaker="Arise Worship" data-duration="6:04" data-sub="As It Is In Heaven" data-src="audio/03-as-it-is-in-heaven.mp3" data-download="audio/03-as-it-is-in-heaven.mp3">
+            <div class="li-num">3</div>
+            <div class="li-art"><img src="images/IMG-20260405-WA0027.jpg" alt="" class="li-img"/><div class="li-fallback">♪</div><button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+            <div class="li-info"><div class="li-title">As It Is In Heaven</div><div class="li-sub">As It Is In Heaven</div></div>
+            <div class="li-date">6:04</div><div class="li-dur"></div>
+            <div class="li-acts">
+              <button class="li-btn" onclick="downloadListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+              <button class="li-btn save-toggle" onclick="toggleSave(this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+            </div>
+          </div>
+
+          <div class="list-item" data-type="music" data-title="River of Life" data-speaker="Arise Worship" data-duration="4:47" data-sub="As It Is In Heaven" data-src="audio/04-river-of-life.mp3" data-download="audio/04-river-of-life.mp3">
+            <div class="li-num">4</div>
+            <div class="li-art"><img src="images/IMG-20260409-WA0090.jpg" alt="" class="li-img"/><div class="li-fallback">♪</div><button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+            <div class="li-info"><div class="li-title">River of Life</div><div class="li-sub">As It Is In Heaven</div></div>
+            <div class="li-date">4:47</div><div class="li-dur"></div>
+            <div class="li-acts">
+              <button class="li-btn" onclick="downloadListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+              <button class="li-btn save-toggle" onclick="toggleSave(this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+            </div>
+          </div>
+
+          <div class="list-item" data-type="music" data-title="Hallelujah Forever" data-speaker="Arise Worship" data-duration="5:55" data-sub="As It Is In Heaven" data-src="audio/05-hallelujah-forever.mp3" data-download="audio/05-hallelujah-forever.mp3">
+            <div class="li-num">5</div>
+            <div class="li-art"><img src="images/IMG-20260326-WA0048.jpg" alt="" class="li-img"/><div class="li-fallback">♪</div><button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+            <div class="li-info"><div class="li-title">Hallelujah Forever</div><div class="li-sub">As It Is In Heaven</div></div>
+            <div class="li-date">5:55</div><div class="li-dur"></div>
+            <div class="li-acts">
+              <button class="li-btn" onclick="downloadListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+              <button class="li-btn save-toggle" onclick="toggleSave(this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+            </div>
+          </div>
+
+          <div class="list-item" data-type="music" data-title="In Your Presence" data-speaker="Arise Worship" data-duration="7:11" data-sub="As It Is In Heaven" data-src="audio/06-in-your-presence.mp3" data-download="audio/06-in-your-presence.mp3">
+            <div class="li-num">6</div>
+            <div class="li-art"><img src="images/IMG-20260326-WA0048.jpg" alt="" class="li-img"/><div class="li-fallback">♪</div><button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+            <div class="li-info"><div class="li-title">In Your Presence</div><div class="li-sub">As It Is In Heaven</div></div>
+            <div class="li-date">7:11</div><div class="li-dur"></div>
+            <div class="li-acts">
+              <button class="li-btn" onclick="downloadListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+              <button class="li-btn save-toggle" onclick="toggleSave(this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════
+         PAGE: ALBUMS
+    ══════════════════════════════ -->
+    <div class="page" id="page-albums" style="display:none">
+      <div class="page-header">
+        <h1 class="page-title">Albums</h1>
+        <p class="page-desc">Every worship album from Arise Worship — tap to browse tracks.</p>
+      </div>
+      <div class="albums-grid-page">
+
+        <div class="album-page-card" onclick="goToAlbum('As It Is In Heaven','2025','12')">
+          <div class="apc-art">
+            <!-- ALBUM COVER — replace src e.g. src="images/album-as-it-is-in-heaven.jpg" -->
+            <img src="images/lock.jpg" alt="As It Is In Heaven" class="album-img"/>
+            <div class="album-fallback">♪</div>
+            <div class="album-overlay"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          </div>
+          <div class="apc-info">
+            <div class="apc-title">As It Is In Heaven</div>
+            <div class="apc-meta">Arise Worship · 2025</div>
+            <div class="apc-tracks">12 tracks</div>
+            <button class="apc-dl" onclick="event.stopPropagation();toast('Downloading album…')">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download
+            </button>
+          </div>
+        </div>
+
+        <div class="album-page-card" onclick="goToAlbum('Flames of Glory','2023','10')">
+          <div class="apc-art">
+            <!-- ALBUM COVER — replace src e.g. src="images/album-flames-of-glory.jpg" -->
+            <img src="images/me.jpg" alt="Flames of Glory" class="album-img"/>
+            <div class="album-fallback">♪</div>
+            <div class="album-overlay"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          </div>
+          <div class="apc-info">
+            <div class="apc-title">Flames of Glory</div>
+            <div class="apc-meta">Arise Worship · 2023</div>
+            <div class="apc-tracks">10 tracks</div>
+            <button class="apc-dl" onclick="event.stopPropagation();toast('Downloading album…')">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download
+            </button>
+          </div>
+        </div>
+
+        <div class="album-page-card" onclick="goToAlbum('Ancient Gates','2022','8')">
+          <div class="apc-art">
+            <!-- ALBUM COVER — replace src e.g. src="images/album-ancient-gates.jpg" -->
+            <img src="images/oma.jpg" alt="Ancient Gates" class="album-img"/>
+            <div class="album-fallback">♪</div>
+            <div class="album-overlay"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          </div>
+          <div class="apc-info">
+            <div class="apc-title">Ancient Gates</div>
+            <div class="apc-meta">Arise Worship · 2022</div>
+            <div class="apc-tracks">8 tracks</div>
+            <button class="apc-dl" onclick="event.stopPropagation();toast('Downloading album…')">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download
+            </button>
+          </div>
+        </div>
+
+        <div class="album-page-card" onclick="goToAlbum('The Blood Speaks','2021','11')">
+          <div class="apc-art">
+            <!-- ALBUM COVER — replace src e.g. src="images/album-the-blood-speaks.jpg" -->
+            <img src="images/IMG-20260409-WA0090.jpg" alt="The Blood Speaks" class="album-img"/>
+            <div class="album-fallback">♪</div>
+            <div class="album-overlay"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          </div>
+          <div class="apc-info">
+            <div class="apc-title">The Blood Speaks</div>
+            <div class="apc-meta">Arise Worship · 2021</div>
+            <div class="apc-tracks">11 tracks</div>
+            <button class="apc-dl" onclick="event.stopPropagation();toast('Downloading album…')">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download
+            </button>
+          </div>
+        </div>
+
+        <div class="album-page-card" onclick="goToAlbum('Glorious','2020','9')">
+          <div class="apc-art">
+            <!-- ALBUM COVER — replace src e.g. src="images/album-glorious.jpg" -->
+            <img src="images/IMG-20260409-WA0099.jpg" alt="Glorious" class="album-img"/>
+            <div class="album-fallback">♪</div>
+            <div class="album-overlay"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          </div>
+          <div class="apc-info">
+            <div class="apc-title">Glorious</div>
+            <div class="apc-meta">Arise Worship · 2020</div>
+            <div class="apc-tracks">9 tracks</div>
+            <button class="apc-dl" onclick="event.stopPropagation();toast('Downloading album…')">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════
+         PAGE: DOWNLOADS
+    ══════════════════════════════ -->
+    <div class="page" id="page-downloads" style="display:none">
+      <div class="page-header">
+        <h1 class="page-title">Downloads</h1>
+        <p class="page-desc">Save sermons and worship music to listen offline — click any ⬇ icon on any track.</p>
+      </div>
+
+      <div class="downloads-info">
+        <div class="dl-info-icon">⬇</div>
+        <div>
+          <strong>How to download</strong>
+          <p>Tap the download icon <svg viewBox="0 0 24 24" style="width:14px;height:14px;display:inline;vertical-align:middle"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> next to any sermon or worship track. Files will save to your device's download folder.</p>
+        </div>
+      </div>
+
+      <div class="shelf" style="padding-top:1.5rem">
+        <div class="shelf-head"><h2 class="shelf-title">All Available Downloads</h2></div>
+        <div class="list-view">
+
+          <div class="list-item dl-item" data-type="sermon" data-title="Walking in the Fullness of Divine Purpose" data-speaker="Pastor John Arise" data-duration="52:30" data-sub="Kingdom Mandate" data-src="audio/sermon-divine-purpose.mp3" data-download="audio/sermon-divine-purpose.mp3">
+            <div class="li-num">1</div>
+            <div class="li-art"><img src="images/IMG-20260326-WA0048.jpg" alt="" class="li-img"/><div class="li-fallback">✝</div><button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+            <div class="li-info"><div class="li-title">Walking in the Fullness of Divine Purpose</div><div class="li-sub">Sermon · 52:30</div></div>
+            <div class="li-date">52:30</div><div class="li-dur">Sermon</div>
+            <div class="li-acts" style="opacity:1">
+              <button class="li-btn dl-btn" onclick="downloadListItem(this.closest('.list-item'))" title="Download"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+            </div>
+          </div>
+
+          <div class="list-item dl-item" data-type="sermon" data-title="The Power of the Resurrection" data-speaker="Pastor John Arise" data-duration="48:12" data-sub="Kingdom Mandate" data-src="audio/sermon-resurrection.mp3" data-download="audio/sermon-resurrection.mp3">
+            <div class="li-num">2</div>
+            <div class="li-art"><img src="images/IMG-20260405-WA0024.jpg" alt="" class="li-img"/><div class="li-fallback">✝</div><button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+            <div class="li-info"><div class="li-title">The Power of the Resurrection</div><div class="li-sub">Sermon · 48:12</div></div>
+            <div class="li-date">48:12</div><div class="li-dur">Sermon</div>
+            <div class="li-acts" style="opacity:1">
+              <button class="li-btn dl-btn" onclick="downloadListItem(this.closest('.list-item'))" title="Download"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+            </div>
+          </div>
+
+          <div class="list-item dl-item" data-type="music" data-title="Open the Gates" data-speaker="Arise Worship" data-duration="4:32" data-sub="As It Is In Heaven" data-src="audio/01-open-the-gates.mp3" data-download="audio/01-open-the-gates.mp3">
+            <div class="li-num">3</div>
+            <div class="li-art"><img src="images/IMG-20260405-WA0024.jpg" alt="" class="li-img"/><div class="li-fallback">♪</div><button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+            <div class="li-info"><div class="li-title">Open the Gates</div><div class="li-sub">Worship · 4:32</div></div>
+            <div class="li-date">4:32</div><div class="li-dur">Music</div>
+            <div class="li-acts" style="opacity:1">
+              <button class="li-btn dl-btn" onclick="downloadListItem(this.closest('.list-item'))" title="Download"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+            </div>
+          </div>
+
+          <div class="list-item dl-item" data-type="music" data-title="Holy Ground" data-speaker="Arise Worship" data-duration="5:18" data-sub="As It Is In Heaven" data-src="audio/02-holy-ground.mp3" data-download="audio/02-holy-ground.mp3">
+            <div class="li-num">4</div>
+            <div class="li-art"><img src="images/IMG-20260405-WA0027.jpg" alt="" class="li-img"/><div class="li-fallback">♪</div><button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+            <div class="li-info"><div class="li-title">Holy Ground</div><div class="li-sub">Worship · 5:18</div></div>
+            <div class="li-date">5:18</div><div class="li-dur">Music</div>
+            <div class="li-acts" style="opacity:1">
+              <button class="li-btn dl-btn" onclick="downloadListItem(this.closest('.list-item'))" title="Download"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+            </div>
+          </div>
+
+          <div class="list-item dl-item" data-type="music" data-title="Hallelujah Forever" data-speaker="Arise Worship" data-duration="5:55" data-sub="As It Is In Heaven" data-src="audio/05-hallelujah-forever.mp3" data-download="audio/05-hallelujah-forever.mp3">
+            <div class="li-num">5</div>
+            <div class="li-art"><img src="images/IMG-20260409-WA0090.jpg" alt="" class="li-img"/><div class="li-fallback">♪</div><button class="li-playbtn" onclick="playListItem(this.closest('.list-item'))"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button></div>
+            <div class="li-info"><div class="li-title">Hallelujah Forever</div><div class="li-sub">Worship · 5:55</div></div>
+            <div class="li-date">5:55</div><div class="li-dur">Music</div>
+            <div class="li-acts" style="opacity:1">
+              <button class="li-btn dl-btn" onclick="downloadListItem(this.closest('.list-item'))" title="Download"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    </main>
+  </div>
+
+  <!-- ==============================
+       BOTTOM PLAYER BAR
+  ============================== -->
+  <div class="player-bar" id="playerBar">
+
+    <!-- Left: track info -->
+    <div class="pb-left">
+      <div class="pb-art">
+        <!-- ART swapped by JS -->
+        <img src="" alt="" id="pbArtImg" />
+        <div class="pb-art-fallback" id="pbArtFallback">♪</div>
+      </div>
+      <div class="pb-meta">
+        <div class="pb-title" id="pbTitle">—</div>
+        <div class="pb-sub" id="pbSub">Select something to play</div>
+      </div>
+      <button class="pb-heart save-toggle" onclick="toggleSave(this)" title="Save">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </button>
+    </div>
+
+    <!-- Centre: controls + progress -->
+    <div class="pb-centre">
+      <div class="pb-controls">
+        <button class="pb-ctrl" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle">
+          <svg viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+        </button>
+        <button class="pb-ctrl" onclick="prevTrack()" title="Previous">
+          <svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+        </button>
+        <button class="pb-play" id="mainPlayBtn" onclick="togglePlay()">
+          <svg viewBox="0 0 24 24" id="iconPlay"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <svg viewBox="0 0 24 24" id="iconPause" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        </button>
+        <button class="pb-ctrl" onclick="nextTrack()" title="Next">
+          <svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+        </button>
+        <button class="pb-ctrl" id="repeatBtn" onclick="toggleRepeat()" title="Repeat">
+          <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+        </button>
+      </div>
+      <div class="pb-progress-row">
+        <span class="pb-time" id="pbCurrent">0:00</span>
+        <div class="pb-bar" id="pbBar" onclick="seekTo(event)">
+          <div class="pb-fill" id="pbFill"></div>
+          <div class="pb-dot" id="pbDot"></div>
+        </div>
+        <span class="pb-time" id="pbDuration">0:00</span>
+      </div>
+    </div>
+
+    <!-- Right: volume + download -->
+    <div class="pb-right">
+      <button class="pb-ctrl" onclick="toggleMute()" title="Mute" id="muteBtn">
+        <svg viewBox="0 0 24 24" id="volIcon"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+      </button>
+      <input type="range" min="0" max="100" value="80" class="vol-slider" id="volSlider" oninput="setVolume(this.value)" />
+      <button class="pb-ctrl dl-btn" onclick="downloadCurrent()" title="Download">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </button>
+    </div>
+
+    <!-- Hidden audio engine -->
+    <!-- AUDIO ENGINE: JS dynamically loads src from data-src on each card/list item -->
+    <audio id="audioEngine" preload="metadata"></audio>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toastEl"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
